@@ -82,8 +82,8 @@ hr {
 /* Boiler plate End */
 
 .jumbotron {
-	background: no-repeat center right fixed url(images/background.jpg);
-
+	/*background: no-repeat center right fixed url(images/background.jpg);
+*/
 	-webkit-background-size: 100%; 
     -moz-background-size: 100%; 
     -o-background-size: 100%; 

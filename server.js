@@ -8,8 +8,9 @@ app.use(bodyParser.json());
 
 
 app.use(function(req, res, next) {
-	if(req.headers['x-forwarded-proto'] === 'http') {
-		res.redirect('http://' + req.hostname + req.url);
+	if(req.headers['x-forwarded-proto'] === 'https') {
+		console.log('middleware xhttp');
+		res.redirect('https://' + req.hostname + req.url);
 	} else {
 		next();
 	}
