@@ -8,12 +8,12 @@ app.use(bodyParser.json());
 
 
 app.use(function(req, res, next) {
-	if(req.headers['x-forwarded-proto'] === 'https') {
+	if(req.headers['x-forwarded-proto'] === 'http') {
 		res.redirect('http://' + req.hostname + req.url);
 	} else {
 		next();
 	}
-})
+});
 
 app.get('/', function(req, res, next) {
 	res.sendFile('index.html')
