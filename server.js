@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 // 	}
 // });
 
-app.use(forceSsl(req, res, next) {
+app.use(function(req, res, next) {
 	if(req.headers['x-forwarded-proto'] != 'https') {
 		res.redirect("https://#{req.header 'host'}#{req.url}");
 	} else {
