@@ -8,6 +8,5 @@ app.use(bodyParser.json());
 
   // Initialize the app.
 app.listen(process.env.PORT || 3000, function () {
-  console.log("App now running on port");
-  });
+  console.log("App now running on port", port);
 });
