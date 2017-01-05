@@ -1,13 +1,15 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
+var express = require("express");
+var path = require("path");
+var bodyParser = require("body-parser");
 
-const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.use(express.static('public'));
+var app = express();
+app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
-app.listen(PORT, function() {
-	console.log('Express server is up on part ' + PORT);
+  // Initialize the app.
+var server = app.listen(process.env.PORT || 3000, function () {
+  var port = server.address().port;
+  console.log("App now running on port", port);
+  });
 });
