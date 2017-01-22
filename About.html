@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Bootstrap core CSS -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="view/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="view/css/bootstrap-social.css" rel="stylesheet"/>
+		<link href="view/css/font-awesome.css" rel="stylesheet"/>
+		<link href="view/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="view/style.css" rel="stylesheet" />
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default" id="navbar-example" role="navigation">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<!-- <h3>InstaMap</h3> -->
+				<ul class="nav navbar-nav">
+					<li><a href="/">Home</a></li>
+					<li class="active"><a href="/about">About</a></li>
+					<!-- <li><a href="#" class="instagram-login">Instagram Login</a></li> -->
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</nav>
+
+		
+		<!-- About page main body container -->
+		<div class="container-fluid" id="about-main-container">
+			<h1>About page</h1>
+			<div id="main-contents">
+				<p>This is a web application, where users can type in the name of the location or address in the search bar and find free wifi zones near inputted location or address.</p>
+				<p>This web application is developed using Javscript, JQuery, HTML, and CSS.</p>
+			</div>
+			</br>
+			<h2 id="about-instructions">How to Use</h2>
+			<ol id="instructions-content">
+				<li>
+					Type in the name of location or address in the search bar. Ex. Empire State Building / 42nd Street New York, NY
+				</li>
+				
+				<li>
+				 	The marker on the map will be relocated to the inputted location or address.
+				</li>
+				
+				<li>
+					Free wifi zones will be marked as new wifi icons.
+				</li>
+
+				<li>
+					Click on wifi icons to see detailed information about selected wifi zones; name, location, and location coordinates.
+				</li>
+
+				<li>
+					Use "Hide Markers" and "Show Markers" to toggle markers.
+				</li>
+			</ol>
+		</div>
+        
+		<div class="background-gray">
+			<div id="contact" class="container info-content">
+				<h4>Developed by Tae Hoon Lee</h4>
+				<hr />
+			<div class="row">
+				<div class="col-md-6">
+					<ul class="no-bullets">
+						<li>
+							<a href="https://www.facebook.com/tae.h.lee.315?fref=ts" target="_blank">
+								<img src="view/image/facebook.png" alt="facebook" height="42" width="42">
+								https://www.facebook.com/tae.h.lee.315?fref=ts
+							</a>
+						</li>
+
+						<li>
+							<a href="https://www.linkedin.com/in/taehoonlee1/" target="_blank">
+								<img src="view/image/linkedin.png" alt="linkedin" height="42" width="42">
+								https://www.linkedin.com/in/taehoonlee1/
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="col-md-6">
+					<ul class="no-bullets">
+						<li>
+							<a href="mailto:thlee1122@hotmail.com" target="_blank">
+								<img src="view/image/email2.png" alt="email" height="42" width="42">
+								<span style="unicode-bidi:bidi-override; direction: rtl;">
+									moc.liamtoh@2211eelht
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			</div>
+		</div>
+
+	    <script type="text/javascript" src="public/jquery.js"></script>
+		<script 
+	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9nh5crm_pn55Ryf_Tu6kbpvy4ywgrZVk&libraries=places">
+	    </script>
+	   <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9nh5crm_pn55Ryf_Tu6kbpvy4ywgrZVk&libraries=places&callback=initAutocomplete"
+         async defer></script> -->
+        <script type="text/javascript" src="view/js/locationByName.js"></script>
+		<script type="text/javascript" src="view/js/ArtGallery.js"></script>
+		<script type="text/javascript" src="view/js/script.js"></script>
+
+	    <!-- &callback=initMap -->
+		<!-- <script src="http://code.jquery.com/jquery-latest.js"></script> -->
+
+	</body>
+
+    <!-- Bootstrap core Javascript -->
+    <!-- <script type="text/javascript" src="view/js/jquery-min.js"></script> -->
+	
+
+</html>

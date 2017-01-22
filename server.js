@@ -16,25 +16,14 @@ app.use(function(req, res, next) {
 	}
 });
 
-// app.use(function(req, res, next) {
-// 	if(req.headers['x-forwarded-proto'] != 'https') {
-// 		res.redirect("https://#{req.header 'host'}#{req.url}");
-// 	} else {
-// 		next();
-// 	}
-// });
-
-
-// app.configure 'production', ->
-//   app.use forceSsl(req, res, next) ->
-//     if req.header 'x-forwarded-proto' != 'https'
-//       res.redirect "https://#{req.header 'host'}#{req.url}"
-//     else
-//       next()
-
 app.get('/', function(req, res, next) {
-	res.sendFile('index.html')
+	res.sendFile('index.html');
 });
+
+app.get('/about', function(req, res, next) {
+	res.sendFile('About.html', { root: __dirname });
+})
+
 
   // Initialize the app.
 app.listen(process.env.PORT || 3001, function () {
