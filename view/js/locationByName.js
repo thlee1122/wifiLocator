@@ -60,9 +60,15 @@ function initAutocomplete() {
   
   var gmarkers = [];
   
+  var infowindows = [];
+
+  var counter = 0;
+
+  var currentlyOpenInfo;
+
   function setMapOnAll() {
     for(var i = 0; i < JSONdata.length; i++) {
-      console.log(JSONdata[i]);
+      // console.log(JSONdata[i]);
       var latitude = parseFloat(JSONdata[i].lat);
       var longitude = parseFloat(JSONdata[i].lon);
       var ssid = JSONdata[i].ssid;
@@ -81,6 +87,7 @@ function initAutocomplete() {
             '</div>';
 
       var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/'
+      // console.log(information);
       
       gmarkers.push(new google.maps.Marker({
         map: map,
@@ -88,25 +95,28 @@ function initAutocomplete() {
           lat: latitude,
           lng: longitude
         },
-        icon: iconBase + 'campfire_maps.png'
+        icon: 'view/image/wifi.png',
+        // icon: iconBase + 'campfire_maps.png'
+        index: counter++
       }))
 
-      var infowindow = new google.maps.InfoWindow({
+      infowindows.push(new google.maps.InfoWindow({
         content: information
-      });
+      }));
 
-      for(var i = 0; i < gmarkers.length; i++) {
-        gmarkers[i].addListener('click', function() {
-          console.log(this);
-          infowindow.open(map, this)
-        }.bind(gmarkers[i]));
-      }
-      // marker.addListener('click', function() {
-      //   console.log(this);
-      //   infowindow.open(map, this)
-      // }.bind(marker));
+
+      gmarkers[gmarkers.length-1].addListener('click', function() {
+        if(currentlyOpenInfo) {
+          currentlyOpenInfo.close()
+        }
+        // console.log(infowindows);
+        // console.log(infowindows[this.index]);
+        infowindows[this.index].open(map, this)
+        currentlyOpenInfo = infowindows[this.index];
+      })
+
     }
-    console.log(gmarkers.length)
+
   }
 
   //Create the search box and link it to the UI element.
@@ -139,7 +149,7 @@ function initAutocomplete() {
     //Set currentCount
     currentCount = counterReturn.next().value;
     localStorage.setItem('counter', currentCount);
-    console.log('Inside the function', currentCount);
+    // console.log('Inside the function', currentCount);
 
     //For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
@@ -149,14 +159,6 @@ function initAutocomplete() {
         console.log('Returned place contains no geometry');
         return;
       }
-      
-      // var icon = {
-      //   url: place.icon,
-      //   size: new google.maps.Size(71, 71),
-      //   origin: new google.maps.Point(0, 0),
-      //   anchor: new google.maps.Point(17, 34),
-      //   scaledSize: new google.maps.Size(25, 25)
-      // };
 
       //Create a marker for each place.
       markers.push(new google.maps.Marker({
@@ -165,7 +167,7 @@ function initAutocomplete() {
         position: place.geometry.location
       }));
 
-      console.log(place.geometry.location)
+      // console.log(place.geometry.location)
 
       if(place.geometry.viewport) {
         //Only geocodes have viewport.
@@ -190,6 +192,7 @@ function initAutocomplete() {
     // console.log('Searched Time', +new Date);
     localStorage.setItem(`SearchedLocation${currentCount}`, input.value);
     localStorage.setItem(`Time${currentCount}`, +new Date);
+    renderSearch()
 
     //Set the search bar to empty, so that user can search new locations
     input.value = '';
@@ -201,13 +204,11 @@ function initAutocomplete() {
   function getItem(index) {
     var searchedAddress = localStorage.getItem(`SearchedLocation${index}`);
     var searchedTime = new Date(parseInt(localStorage.getItem(`Time${index}`)));
-
-    // console.log(`SearchedLocation${index}:`, searchedAddress);
-    // console.log(`Time${index}:`, searchedTime);
+    var newSearchedTime = String(searchedTime).slice(0,24) + String(searchedTime).slice(33);
 
     var parentDiv = document.createElement('DIV');
     
-    parentDiv.innerHTML = `<div id="search-result-container"><div><strong>Searched Address:</strong> ${searchedAddress}</div><div><strong>Searched at:</strong> ${searchedTime}</div></div>`
+    parentDiv.innerHTML = `<div id="search-result-container"><div><strong>Searched Address:</strong> ${searchedAddress}</div><div><strong>Searched at:</strong> ${newSearchedTime}</div></div>`
     if(searchedAddress === null) {
       parentDiv.innerHTML = '';
     }
@@ -230,14 +231,22 @@ function initAutocomplete() {
     } else {
       searchResults.appendChild(getItem(currentCount));
     }
+
+    console.log(currentCount);
   }
 
   function retrieveSearch() {
     var retrievedArray = [];
 
-    for(var i = 1; i < currentCount; i++) {
+    // for(var i = 1; i < currentCount; i++) {
+    //   retrievedArray.push(getItem(i))
+    // }
+    // return retrievedArray;
+
+    for(var i = currentCount; i >= 0; i--) {
       retrievedArray.push(getItem(i))
     }
+
     return retrievedArray;
   }
 
