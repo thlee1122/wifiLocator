@@ -7,7 +7,7 @@ function initAutocomplete() {
     zoom: 18,
     maxZoom: 20,
     minZoom: 0,
-    mapTypeId: 'terrain',
+    mapTypeId: 'roadmap',
     center: {lat: 40.705523, lng: -74.009149},
     disableDefaultUI: false
   });
