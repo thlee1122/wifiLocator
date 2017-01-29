@@ -7,6 +7,7 @@ function initAutocomplete() {
     zoom: 18,
     maxZoom: 20,
     minZoom: 0,
+    mapTypeId: 'terrain',
     center: {lat: 40.705523, lng: -74.009149},
     disableDefaultUI: false
   });
@@ -225,11 +226,13 @@ function initAutocomplete() {
       retrieveSearch().forEach((e, i) => {
         var item = getItem(i)
 
-        searchResults.appendChild(item);
+        //use insertBefore instead of appendChild
+        //appendChild will appendChild at then end of the list and insertBefore will insert child in the very beginning of the list
+        searchResults.insertBefore(item, searchResults.childNodes[0]); 
         init = true;
       })
     } else {
-      searchResults.appendChild(getItem(currentCount));
+      searchResults.insertBefore(getItem(currentCount), searchResults.childNodes[0]);
     }
 
     console.log(currentCount);
@@ -238,16 +241,16 @@ function initAutocomplete() {
   function retrieveSearch() {
     var retrievedArray = [];
 
-    // for(var i = 1; i < currentCount; i++) {
-    //   retrievedArray.push(getItem(i))
-    // }
-    // return retrievedArray;
-
-    for(var i = currentCount; i >= 0; i--) {
+    for(var i = 1; i < currentCount; i++) {
       retrievedArray.push(getItem(i))
     }
-
     return retrievedArray;
+
+    // for(var i = currentCount; i >= 0; i--) {
+    //   retrievedArray.push(getItem(i))
+    // }
+
+    // return retrievedArray;
   }
 
   renderSearch();

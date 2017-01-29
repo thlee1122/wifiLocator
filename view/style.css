@@ -131,6 +131,12 @@ hr {
 	color: #FFFFFF;
 }
 
+.navbar .nav > h3 {
+	font-size: 50px;
+	margin-top: -3px;
+	padding-left: 1030px;
+}
+
 .navbar .nav > li a:hover, .navbar .nav > li a:focus { 
 	color: #999999; 
 }
